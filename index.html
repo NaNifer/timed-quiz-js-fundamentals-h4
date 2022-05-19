@@ -6,21 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timed Quiz on JS Fundamentals</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
 </head>
 
 <body>
     <header>
-        <div id="high-score"></div>
-        <div id="timerbox">
-            <div class="time_left_txt">Time Left</div>
-            <div class="timer">60</div>
-        </div>
+        <div id="high-score">View High Scores</div>
+        <div class="timer">Time Left: 60</div>
     </header>
+
     <main>
         <!-- hold the quiz -->
-        <div id="quiz"></div>
-        <!-- display the results -->
-        <div id="results"></div>
+        <div class="quiz-box" id="quix-box">
+            <h2 class="question-box" id="question">Question goes here.</h2>
+            <div class="option-box">
+                <button class="option" id="op1" onclick="">A. This is an option.</button>
+
+                <button class="option" id="op2" onclick="">B. This is also an option.</button>
+
+                <button class="option" id="op3" onclick="">C. Or how about this option?</button>
+
+                <button class="option" id="op4" onclick="">D. This is could be an option, but maybe it's not. It's a really, really long and complicated one.</button>
+            </div>
+
+            <div class="navigation">
+                <button class="next">Next</button>
+            </div>
+
+            <!-- display the results -->
+            <div id="results">Pop-up results here</div>
+        </div>
+
 
 
 

@@ -1,22 +1,24 @@
 // selects the quiz, results and submit HTML elements 
-const quizContainer = document.getElementById('quiz');
+const quizContainer = document.getElementById('quiz-box');
 const resultsContainer = document.getElementById('results');
 
 
 // // function for building quiz
 // function buildQuiz() { }
+
 // // function for showing the results
 // function showResults() { }
+
 // // function for timer
 // function timerDisplay() { }
+
 // // function for highscore
 // function highScorer() { }
+
 // // function for message after timer is up
 // sendMessageTimeOver() { }
 
 
-// display quiz right away
-// buildQuiz();
 
 // on submit, show results
 // submitButton.addEventListener('click', showResults);
@@ -46,4 +48,4 @@ function timerDisplay() {
     }, 1000);
 }
 
-console.log(timerDisplay());
+timerDisplay();
