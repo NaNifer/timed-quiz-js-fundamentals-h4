@@ -1,5 +1,5 @@
 // array of objects, for the questions
-// each objects have
+// each objects have key answer
 
 // if statements boolean to add to the count of correct answers,
 // if wrong, take off time to timer
