@@ -1,6 +1,6 @@
 // selects the quiz, results and submit HTML elements 
 const quizContainer = document.getElementById('quiz-box');
-const resultsContainer = document.getElementById('results');
+const resultsEl = document.getElementById('results');
 
 
 
@@ -94,8 +94,7 @@ const questions = [
 ]
 
 
-// START QUIZ
-
+// Done -- Start Quiz
 const beginBtn = document.getElementById("beginBtn");
 beginBtn.addEventListener("click", startQuiz);
 let questionAnswerBoxEl = document.getElementById("questionAnswerBox");
@@ -117,22 +116,38 @@ const choice3El = document.getElementById('choice3');
 const choice4El = document.getElementById('choice4');
 let questionIndex = 0;
 let choicesIndex = 0;
+const skipQuestBtn = document.getElementById("skipQuestBtn");
 
 
-// WORKS!! Now create and enter in variable for indexes
-function showQuestion() {
-    questionEl.textContent = questions[2].quest;
-    choice1El.textContent = questions[2].choices[0];
-    choice2El.textContent = questions[2].choices[1];
-    choice3El.textContent = questions[2].choices[2];
-    choice4El.textContent = questions[2].choices[3];
-    if (questionCodeEl) {
-        questionCodeEl.textContent = questions[2].questCode;
-    };
+choice1El.addEventListener("click", choiceClickHandler);
+choice2El.addEventListener("click", choiceClickHandler);
+choice3El.addEventListener("click", choiceClickHandler);
+choice4El.addEventListener("click", choiceClickHandler);
+skipQuestBtn.addEventListener("click", choiceClickHandler);
+
+
+
+// when any choice is clicked or next question button is clicked,  go to net question
+function choiceClickHandler(event) {
+    if (questionIndex + 1 < questions.length)
+        showQuestion(++questionIndex);
 }
-showQuestion();
 
+// displays next question
+function showQuestion(index) {
+    questionEl.textContent = questions[index].quest;
+    choice1El.textContent = questions[index].choices[0];
+    choice2El.textContent = questions[index].choices[1];
+    choice3El.textContent = questions[index].choices[2];
+    choice4El.textContent = questions[index].choices[3];
+    if (questionCodeEl) {
+        questionCodeEl.textContent = questions[index].questCode;
+    };
 
+}
+
+showQuestion(questionIndex);
+// if any choice is clicked display result 
 
 
 
