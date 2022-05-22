@@ -17,30 +17,44 @@
     </header>
 
     <main>
-        <!-- hold the quiz -->
-        <div class="quiz-box" id="quix-box">
-            <h2 class="question-box" id="question">Question goes here. Plus there's some added text for parameters in how it would be used in Javascript. </h2>
-            <h3 class="questionCode-box" id="questionCode"></h3>
-            <div class="choice-box">
-                <button class="choice" id="choice1" onclick="">A. This is an choice.</button>
+        <!-- hold the into & quiz -->
+        <container class="quiz-box" id="quiz-box">
 
-                <button class="choice" id="choice2" onclick="">B. This is also an choice.</button>
+            <!-- Intro with rules, onclick start game & hide this element -->
+            <container id="introRulesBox" class="notHidden">
+                <h2 class="introTitle" id="introTitle"> Welcome to this Timed Quiz on JS Fundamentals! Here are the
+                    rules:</h2>
+                <h3></br>— Click Start Quiz.</br>
+                    — Timer on the top right will start to run.</br>
+                    — Total time is 60 seconds with 5 questions in total.</br>
+                    — If the question is answered wrong or skipped, 5 seconds will be deducted from the timer.</br>
+                    — If the question is answered correctly, will add 100 points to your score.</br>
+                    — For each second left on the clock you will receive 10 points.</br>
+                    — When game is over, enter your initials to the high scorer board!</br></br>
+                    <em>Let's begin!</em>
+                </h3>
+                <button class="beginBtn" id="beginBtn" onclick="">I'm ready!</button>
+            </container>
 
-                <button class="choice" id="choice3" onclick="">C. Or how about this choice?</button>
-
-                <button class="choice" id="choice4" onclick="">D. This is could be an choice, but maybe it's not. It's a
-                    really, really long and complicated one.</button>
-            </div>
-
-            <div class="navigation">
-                <button class="skipBtn" id="skipQuestBtn">Skip Question</button>
-
-                <!-- display the results after each question as pop-up -->
-                <div class="resultsPopup">Pop-up results here</div>
-            </div>
-
-        </div>
-
+            <!-- Onclick, these elements will not be unhidden. -->
+            <container id="questionAnswerBox" class="questionAnswerBox hidden">
+                <h2 class="question" id="question">Question goes here. Plus there's some added text for parameters in
+                    how it would be used in Javascript. </h2>
+                <h3 class="questionBlockCode" id="questionBlockCode">This is some extra code block for some of the questions.</h3>
+                <container class="choice-box">
+                    <button class="choice" id="choice1" onclick="">A. This is an choice.</button>
+                    <button class="choice" id="choice2" onclick="">B. This is also an choice.</button>
+                    <button class="choice" id="choice3" onclick="">C. Or how about this choice?</button>
+                    <button class="choice" id="choice4" onclick="">D. This is could be an choice, but maybe it's not.
+                        It's a really, really long and complicated one.</button>
+                </container>
+                <div class="navigation">
+                    <button class="skipBtn" id="skipQuestBtn">Skip Question</button>
+                    <!-- display the results after each question as pop-up -->
+                    <div class="resultsPopup">Pop-up results here</div>
+                </div>
+            </container>
+        </container>
 
 
 

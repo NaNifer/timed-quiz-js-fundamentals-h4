@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    display: block;
 }
 
 /* HEADER */
@@ -50,26 +49,40 @@ main {
     position: relative;
 }
 
+.hidden {
+    display: none;
+}
+
 #question {
-    margin: 15px;
+    margin: 15px 15px 0 15px;
     font-size: 2em;
     color: midnightblue;
 }
 
-.option-box {
+.questionCode-box {
+    margin: 0 35px 15px 35px;
+    padding: 15px;
+    font-size: 1em;
+    color: midnightblue;
+    background-color: darkgrey;
+    
+}
+
+.choice-box {
     display: block;
     flex-direction: column;
 }
 
-.option-box button {
+.choice-box button {
     margin: 15px 15px 3px 15px;
     font-size: 1.5em;
     color: white;
     background-color: midnightblue;
     border-radius: 4px;
+    display: block;
 }
 
-.option-box button:hover {
+.choice-box button:hover {
     color: white;
     background-color: blueviolet;
 }
@@ -89,7 +102,16 @@ main {
     align-self: center;
 }
 
-/* ??? Why isn't margin working on the button? I need some padding at top specifically, btwn button and options. */
+.skipBtn:hover {
+    margin: 20px, 30px, 10px 30px;
+    padding: 8px;
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    align-self: center;
+}
+
+/* ??? Why isn't margin working on the button? I need some padding at top specifically, btwn button and choices. */
 #skipQuestBtn {
     margin: 20px, 30px, 10px 30px;
 

@@ -73,6 +73,9 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
+When you add the global variable to CSS to display block, the title withing the header will display on the page!
+
+
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
 To see how you can add code snippets, see below:
@@ -111,6 +114,8 @@ Use this section to outline areas that you want to continue focusing on in futur
 ## Acknowledgments
 
 Nolan Spence and I collaboratd on creating the questions for the quiz. 
+Shout out to [nullaus](https://github.com/nullaus) who was my quick dial on all the random questions about JS, and talked through with me about my data structure.
+
 
 This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
 

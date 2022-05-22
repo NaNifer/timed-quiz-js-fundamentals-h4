@@ -7,6 +7,9 @@ const resultsContainer = document.getElementById('results');
 // // function for building quiz
 // function buildQuiz() { }
 
+// // DONE! function for showing the question
+// function showQuestion() { }
+
 // // function for showing the results
 // function showResults() { }
 
@@ -24,19 +27,6 @@ const resultsContainer = document.getElementById('results');
 
 // on submit, show results
 // submitButton.addEventListener('click', showResults);
-
-
-// BUILDING THE QUIZ.....
-const questionEl = document.getElementById('question');
-const questionCodeEl = document.getElementById('questionCode');
-const choice1El = document.getElementById('choice1');
-const choice2El = document.getElementById('choice2');
-const choice3El = document.getElementById('choice3');
-const choice4El = document.getElementById('choice4');
-
-function buildQuiz() { 
-
-}
 
 
 
@@ -104,6 +94,48 @@ const questions = [
 ]
 
 
+// START QUIZ
+
+const beginBtn = document.getElementById("beginBtn");
+beginBtn.addEventListener("click", startQuiz);
+let questionAnswerBoxEl = document.getElementById("questionAnswerBox");
+
+function startQuiz() {
+    let introRulesBoxEl = document.getElementById("introRulesBox");
+    introRulesBoxEl.setAttribute("class", "hidden");
+    questionAnswerBoxEl.setAttribute("class", "visible");
+    timerDisplay();
+}
+
+
+// BUILDING THE QUIZ.....
+const questionEl = document.getElementById('question');
+const questionCodeEl = document.getElementById('questionCode');
+const choice1El = document.getElementById('choice1');
+const choice2El = document.getElementById('choice2');
+const choice3El = document.getElementById('choice3');
+const choice4El = document.getElementById('choice4');
+let questionIndex = 0;
+let choicesIndex = 0;
+
+
+// WORKS!! Now create and enter in variable for indexes
+function showQuestion() {
+    questionEl.textContent = questions[2].quest;
+    choice1El.textContent = questions[2].choices[0];
+    choice2El.textContent = questions[2].choices[1];
+    choice3El.textContent = questions[2].choices[2];
+    choice4El.textContent = questions[2].choices[3];
+    if (questionCodeEl) {
+        questionCodeEl.textContent = questions[2].questCode;
+    };
+}
+showQuestion();
+
+
+
+
+
 // TIMER
 // sets time for timer
 var secondsLeft = 60;
@@ -122,9 +154,8 @@ function timerDisplay() {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             // Calls function to tell user test is over
-            sendMessageTimeOver();
+            // sendMessageTimeOver();
         }
     }, 1000);
 }
 
-timerDisplay();
