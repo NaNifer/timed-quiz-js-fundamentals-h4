@@ -33,13 +33,14 @@
                     — When game is over, enter your initials to the high scorer board!</br></br>
                     <em>Let's begin!</em>
                 </h3>
-                <button class="beginBtn" id="beginBtn" onclick="">I'm ready!</button>
+                <button class="beginBtn" id="beginBtn" onclick=""> I'm ready! </button>
             </container>
 
             <!-- Onclick, these elements will not be unhidden. -->
             <container id="questionAnswerBox" class="questionAnswerBox hidden">
                 <h2 class="question" id="question">Question goes here. Plus there's some added text for parameters in
                     how it would be used in Javascript. </h2>
+
                 <container class="choice-box">
                     <button class="choice" id="choice1" onclick="">A. This is an choice.</button>
                     <button class="choice" id="choice2" onclick="">B. This is also an choice.</button>
@@ -47,15 +48,29 @@
                     <button class="choice" id="choice4" onclick="">D. This is could be an choice, but maybe it's not.
                         It's a really, really long and complicated one.</button>
                 </container>
-                <div class="navigation">
-                    <!-- display the results after each question as pop-up -->
+
+                <div class="pop-up">
                     <div id="results"></div>
                 </div>
             </container>
-            <container>
-                <form action="/initials" method="post" id="postInitials"> 
+
+            <container id="printScoreBox" class="printScoreBox hidden">
+                <h2 class="printScore" id="printScore"></h2>
+                <h4>Good job! Please enter your initials to save your score on the high score board.</h4>
+                <form name="initialsInput" onsubmit="return validateForm()" method="post">
+                    Initials: <input type="text" name="initials" id="initials">
+                    <input type="submit" value="save">
                 </form>
             </container>
+
+            <container id="highScoreBox" class="highScoreBox hidden">
+                <h2 class="highScores" id="highScores">Score Board</h2>
+                <ul>
+
+                </ul>
+                <button class="playBtn" id="playBtn" onclick=""> Play Game</button>
+            </container>
+
         </container>
 
 

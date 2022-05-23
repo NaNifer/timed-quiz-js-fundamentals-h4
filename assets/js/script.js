@@ -95,8 +95,6 @@ const questions = [
     }
 ]
 
-
-
 // Done -- Start Quiz
 const beginBtn = document.getElementById("beginBtn");
 beginBtn.addEventListener("click", startQuiz);
@@ -127,26 +125,23 @@ choice4El.addEventListener("click", choiceClickHandler);
 
 
 
+
 // when any choice is clicked or next question button is clicked,  go to net question
 function choiceClickHandler(event) {
     console.log(event);
     const resultsEl = document.getElementById('results');
     // when one of the choices are selected, 
     // then it is verfied with the correct answer, 
-    // Works, BUT loads result upon opening...????
-
     if (event.target.innerText === questions[questionIndex].answer) {
         resultsEl.innerText = "Correct! +100points";
         createScore(100);
         // Add points to createScore function
     }
     else {
-        resultsEl.innerText = "Wrong, -5 seconds!"
-
-        wrongAnswer()
+        resultsEl.innerText = "Wrong, -5 seconds!";
+        wrongAnswer();
     }
     // subtract 5 seconds from timer 
-
     if (questionIndex + 1 < questions.length) {
         showQuestion(++questionIndex);
     }
@@ -155,6 +150,7 @@ function choiceClickHandler(event) {
         createScore(secondsLeft * 5);
         secondsLeft = 0;
     }
+
 }
 
 showQuestion(questionIndex);
@@ -193,19 +189,53 @@ function timerDisplay() {
     var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time Left: " + secondsLeft;
-
         if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
-
             // Calls function to tell user test is over
             gameOver();
         }
     }, 1000);
 }
 
+
+let printScoreBoxEl = document.getElementById("printScoreBox");
+
 function gameOver() {
     questionAnswerBoxEl.setAttribute("class", "hidden");
-    timeEl.textContent = "Time Left: 0"
-
+    printScoreBoxEl.setAttribute("class", "visible");
+    var printScoreEl = document.getElementById("printScore");
+    timeEl.textContent = "Time Left: 0";
+    printScoreEl.textContent = ("Your Score: " + score);
 }
+
+
+// Entering in initials
+let initialsEl = document.querySelector("#initials");
+
+
+
+
+
+function validateForm() {
+    let x = document.forms["initialsInput"]["initials"].value;
+    if (x == "") {
+        alert("Please enter your initials.");
+        return false;
+    }
+}
+
+
+// targets button on high score page, to start game again
+let playBtnEl = document.getElementById("playBtn");
+playBtnEl.addEventListener("click", playAgain);
+
+function playAgain() {
+    let introRulesBoxEl = document.getElementById("introRulesBox");
+    printScoreBoxEl.setAttribute("class", "hidden");
+    introRulesBoxEl.setAttribute("class", "visible");
+    console.log(introRulesBoxEl.class);
+    questionIndex = 0;
+    secondsLeft = 60;
+}
+
