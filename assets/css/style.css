@@ -94,31 +94,8 @@ main {
     justify-content: flex-end;
 }
 
-.skipBtn {
-    margin: 20px, 30px, 10px 30px;
-    padding: 8px;
-    background-color: blueviolet;
-    color: white;
-    border-radius: 4px;
-    align-self: center;
-}
 
-.skipBtn:hover {
-    margin: 20px, 30px, 10px 30px;
-    padding: 8px;
-    background-color: red;
-    color: white;
-    border-radius: 4px;
-    align-self: center;
-}
-
-/* ??? Why isn't margin working on the button? I need some padding at top specifically, btwn button and choices. */
-#skipQuestBtn {
-    margin: 20px, 30px, 10px 30px;
-
-}
-
-.results {
+#results {
     align-self: center;
     text-align: center;
     color: blueviolet;

@@ -26,10 +26,10 @@
                     rules:</h2>
                 <h3></br>— Click Start Quiz.</br>
                     — Timer on the top right will start to run.</br>
-                    — Total time is 60 seconds with 5 questions in total.</br>
-                    — If the question is answered wrong or skipped, 5 seconds will be deducted from the timer.</br>
+                    — Total time is 60 seconds with 6 questions in total.</br>
+                    — If the question is answered wrong, 5 seconds will be deducted from the timer.</br>
                     — If the question is answered correctly, will add 100 points to your score.</br>
-                    — For each second left on the clock you will receive 10 points.</br>
+                    — For each second left on the clock you will receive 5 points.</br>
                     — When game is over, enter your initials to the high scorer board!</br></br>
                     <em>Let's begin!</em>
                 </h3>
@@ -40,8 +40,6 @@
             <container id="questionAnswerBox" class="questionAnswerBox hidden">
                 <h2 class="question" id="question">Question goes here. Plus there's some added text for parameters in
                     how it would be used in Javascript. </h2>
-                    <!-- This is some extra code block for some of the questions. -->
-                <h3 class="questionBlockCode" id="questionBlockCode"></h3>
                 <container class="choice-box">
                     <button class="choice" id="choice1" onclick="">A. This is an choice.</button>
                     <button class="choice" id="choice2" onclick="">B. This is also an choice.</button>
@@ -50,10 +48,13 @@
                         It's a really, really long and complicated one.</button>
                 </container>
                 <div class="navigation">
-                    <button class="skipBtn" id="skipQuestBtn">Skip Question</button>
                     <!-- display the results after each question as pop-up -->
-                    <div class="results">Pop-up results here</div>
+                    <div id="results"></div>
                 </div>
+            </container>
+            <container>
+                <form action="/initials" method="post" id="postInitials"> 
+                </form>
             </container>
         </container>
 
