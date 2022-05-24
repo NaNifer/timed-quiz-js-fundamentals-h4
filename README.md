@@ -51,8 +51,8 @@ THEN I can save my initials and score
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution: [GitHub](https://github.com/NiferK/timed-quiz-js-fundamentals-h4)
+- Live Site: [Test Your Knowledge of vanilla Javascript with this Timed Quiz on JS Fundamentals](https://niferk.github.io/timed-quiz-js-fundamentals-h4/)
 
 ## My process
 
