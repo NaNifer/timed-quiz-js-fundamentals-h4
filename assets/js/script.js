@@ -2,34 +2,6 @@
 const quizContainer = document.getElementById('quiz-box');
 
 
-
-
-// // function for building quiz
-// function buildQuiz() { }
-
-// // DONE! function for showing the question
-// function showQuestion() { }
-
-
-
-// // DONE-ISH: function for timer -- need to subtract time for wrong answer
-// function timerDisplay() { }
-
-
-
-// // function for displaying highscore
-// function highScorer() { }
-
-// // function for message after timer is up
-// sendMessageTimeOver() { }
-
-// on submit, show results
-// submitButton.addEventListener('click', showResults);
-
-
-
-
-
 // Questions & Answers - answer is the index of choices
 
 const questions = [
@@ -101,7 +73,6 @@ beginBtn.addEventListener("click", startQuiz);
 let questionAnswerBoxEl = document.getElementById("questionAnswerBox");
 
 function startQuiz() {
-    let introRulesBoxEl = document.getElementById("introRulesBox");
     introRulesBoxEl.setAttribute("class", "hidden");
     questionAnswerBoxEl.setAttribute("class", "visible");
     timerDisplay();
@@ -214,14 +185,49 @@ function gameOver() {
 let initialsEl = document.querySelector("#initials");
 
 
-
-
-
-function validateForm() {
-    let x = document.forms["initialsInput"]["initials"].value;
-    if (x == "") {
+function validateForm(event) {
+    event.preventDefault();
+    let initials = document.forms["initialsInput"]["initials"].value;
+    if (initials == "") {
         alert("Please enter your initials.");
         return false;
+    }
+    inputScore(initials, score);
+}
+
+
+let highScoreBoard = JSON.parse(localStorage.getItem("highScoreBoard")) || [];
+
+// // function for displaying highscore
+function inputScore(initials, score) {
+    var userScore = {
+        initials: initials,
+        totalScore: score,
+    };
+    highScoreBoard.push(userScore);
+    highScoreBoard.sort((a, b) => b.totalScore - a.totalScore);
+    localStorage.setItem("highScoreBoard", JSON.stringify(highScoreBoard));
+    renderScoreboard();
+}
+
+
+
+
+let listHighScoreEl = document.getElementById("listHighScore");
+let highScoreBoxEl = document.getElementById("highScoreBox");
+
+function renderScoreboard() {
+    printScoreBoxEl.setAttribute("class", "hidden");
+    highScoreBoxEl.setAttribute("class", "visible");
+
+    while (listHighScoreEl.lastChild) {
+        listHighScoreEl.removeChild(listHighScoreEl.lastChild);
+    }
+    for (let i = 0; i < 6 && highScoreBoard.length; i++) {
+
+        var li = document.createElement("li");
+        li.textContent = (`${highScoreBoard[i].totalScore} **** ${highScoreBoard[i].initials}`)
+        listHighScoreEl.appendChild(li);
     }
 }
 
@@ -230,12 +236,33 @@ function validateForm() {
 let playBtnEl = document.getElementById("playBtn");
 playBtnEl.addEventListener("click", playAgain);
 
+
+let introRulesBoxEl = document.getElementById("introRulesBox");
+
+
 function playAgain() {
-    let introRulesBoxEl = document.getElementById("introRulesBox");
-    printScoreBoxEl.setAttribute("class", "hidden");
+    highScoreBoxEl.setAttribute("class", "hidden");
     introRulesBoxEl.setAttribute("class", "visible");
-    console.log(introRulesBoxEl.class);
+    initialsEl.value = "";
     questionIndex = 0;
     secondsLeft = 60;
+    score = 0;
 }
 
+
+let viewHighScoreEl = document.getElementById("viewHighScore");
+viewHighScoreEl.addEventListener("click", viewHighScores);
+
+function viewHighScores() {
+    introRulesBoxEl.setAttribute("class", "hidden");
+    highScoreBoxEl.setAttribute("class", "visible");
+    while (listHighScoreEl.lastChild) {
+        listHighScoreEl.removeChild(listHighScoreEl.lastChild);
+    }
+    for (let i = 0; i < 6 && highScoreBoard.length; i++) {
+
+        var li = document.createElement("li");
+        li.textContent = (`${highScoreBoard[i].totalScore} **** ${highScoreBoard[i].initials}`)
+        listHighScoreEl.appendChild(li);
+    }
+}

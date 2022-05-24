@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <div id="high-score">View High Scores</div>
+        <button class="viewHighScore" id="viewHighScore" onclick=""> View High Scores </button>
         <div class="timer">Time Left: 60</div>
     </header>
 
@@ -57,18 +57,20 @@
             <container id="printScoreBox" class="printScoreBox hidden">
                 <h2 class="printScore" id="printScore"></h2>
                 <h4>Good job! Please enter your initials to save your score on the high score board.</h4>
-                <form name="initialsInput" onsubmit="return validateForm()" method="post">
+                
+                <form name="initialsInput" onsubmit="return validateForm(event)" method="post">
                     Initials: <input type="text" name="initials" id="initials">
-                    <input type="submit" value="save">
+                    <button type="submit" value="save">Save</button>
                 </form>
+
             </container>
 
             <container id="highScoreBox" class="highScoreBox hidden">
                 <h2 class="highScores" id="highScores">Score Board</h2>
-                <ul>
+                <ol class="listHighScore" id="listHighScore">
 
-                </ul>
-                <button class="playBtn" id="playBtn" onclick=""> Play Game</button>
+                </ol>
+                <button class="playBtn" id="playBtn" onclick=""> Play Again!</button>
             </container>
 
         </container>
