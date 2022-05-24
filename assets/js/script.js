@@ -1,9 +1,57 @@
-// selects the quiz, results and submit HTML elements 
+// GLOBAL VARIABLES
+// Main Container:
 const quizContainer = document.getElementById('quiz-box');
+// Questions and answers
+const questionEl = document.getElementById('question');
+const choice1El = document.getElementById('choice1');
+const choice2El = document.getElementById('choice2');
+const choice3El = document.getElementById('choice3');
+const choice4El = document.getElementById('choice4');
+const beginBtn = document.getElementById("beginBtn");
+// Other HTML elements:
+let questionAnswerBoxEl = document.getElementById("questionAnswerBox");
+let printScoreBoxEl = document.getElementById("printScoreBox");
+let listHighScoreEl = document.getElementById("listHighScore");
+let highScoreBoxEl = document.getElementById("highScoreBox");
+let playBtnEl = document.getElementById("playBtn");
+let introRulesBoxEl = document.getElementById("introRulesBox");
+let viewHighScoreEl = document.getElementById("viewHighScore");
+let timeEl = document.querySelector(".timer");
+// Entering in initials
+let initialsEl = document.querySelector("#initials");
+
+// Index for first questions
+let questionIndex = 0;
+let choicesIndex = 0;
+
+// Begins score at 0
+let score = 0;
+
+// sets time for timer
+var secondsLeft = 60;
+
+// Accesses score board from local storage, if it exists
+let highScoreBoard = JSON.parse(localStorage.getItem("highScoreBoard")) || [];
 
 
-// Questions & Answers - answer is the index of choices
+// EVENT LISTENERS
+// Starts quiz
+beginBtn.addEventListener("click", startQuiz);
 
+// Quiz answers (choices) listeners
+choice1El.addEventListener("click", choiceClickHandler);
+choice2El.addEventListener("click", choiceClickHandler);
+choice3El.addEventListener("click", choiceClickHandler);
+choice4El.addEventListener("click", choiceClickHandler);
+// Starts game again
+
+playBtnEl.addEventListener("click", playAgain);
+// View high scores
+
+viewHighScoreEl.addEventListener("click", renderScoreboard);
+
+
+// Questions & Answers for the Quiz
 const questions = [
     {
         quest: "What is the z- index used value for?",
@@ -26,22 +74,22 @@ const questions = [
         ]
     },
     {
-        quest: "What is the correct JavaScript syntax to change the content of the HTML element:   < h1 id='replace-me' > Replace this text.</h1> ",
-        answer: "document.getElementById('replace - me').innerHTML = 'Hello World!' ",
+        quest: "Which HTML element do you put JavaScript into?",
+        answer: "<script>",
         choices: [
-            "#replace - me.innerHTML = 'Hello World!' ",
-            "document.getElement('h1').innerHTML = 'Hello World'! ",
-            "document.getElementById('replace - me').innerHTML = 'Hello World!' ",
-            "document.getElementByName('h1').innerHTML = 'Hello World!' "
+            "<src>",
+            "<js>",
+            "<javascript>",
+            "<script>"
         ]
     },
     {
-        quest: "How do you write an IF statement for executing code if 'i' is NOT equal to 10? ",
-        answer: "if (i != 10) ",
+        quest: "How do you write an IF statement for executing code: if 'i' is NOT equal to 10? ",
+        answer: "if (i != 10)",
         choices: [
             "if(i 10) ",
             "if(i == !10) then",
-            "if (i != 10) ",
+            "if (i != 10)",
             "if i || 10"
         ]
     },
@@ -64,45 +112,44 @@ const questions = [
             "HTML",
             "Any of these"
         ]
+    },
+    {
+        quest: "What will be the output of the following code:   let bear = ”FuzzyLittleBear” console.log(bear.charAt(4))",
+        answer: "y",
+        choices: [
+            "z",
+            "L",
+            "y",
+            "None of these"
+        ]
+    },
+    {
+        quest: "What is the correct syntax for declaring an array.",
+        answer: "const arr=[1,2,3,4]",
+        choices: [
+            "const arr={1,2,3,4}",
+            "const arr=[1,2,3,4]",
+            "Both a and b",
+            "None of these"
+        ]
     }
 ]
 
-// Done -- Start Quiz
-const beginBtn = document.getElementById("beginBtn");
-beginBtn.addEventListener("click", startQuiz);
-let questionAnswerBoxEl = document.getElementById("questionAnswerBox");
 
+// Displays questions and starts timer function
 function startQuiz() {
     introRulesBoxEl.setAttribute("class", "hidden");
     questionAnswerBoxEl.setAttribute("class", "visible");
     timerDisplay();
 }
 
-
-// BUILDING THE QUIZ.....
-const questionEl = document.getElementById('question');
-const choice1El = document.getElementById('choice1');
-const choice2El = document.getElementById('choice2');
-const choice3El = document.getElementById('choice3');
-const choice4El = document.getElementById('choice4');
-let questionIndex = 0;
-let choicesIndex = 0;
-
-
-choice1El.addEventListener("click", choiceClickHandler);
-choice2El.addEventListener("click", choiceClickHandler);
-choice3El.addEventListener("click", choiceClickHandler);
-choice4El.addEventListener("click", choiceClickHandler);
-
-
-
-
-// when any choice is clicked or next question button is clicked,  go to net question
+// Validates choice with answer, displays result, adds points to score(createScore) or
+//  subtracts from timer(wrongAnswer), and adds 1 to questionIndex and displays (showQuestion), or 
+// ends game (gameOver), gives points for extra secs & create score (createScore).
 function choiceClickHandler(event) {
     console.log(event);
     const resultsEl = document.getElementById('results');
-    // when one of the choices are selected, 
-    // then it is verfied with the correct answer, 
+    // when one of the choices are selected, then it is verfied with the correct answer, 
     if (event.target.innerText === questions[questionIndex].answer) {
         resultsEl.innerText = "Correct! +100points";
         createScore(100);
@@ -118,15 +165,25 @@ function choiceClickHandler(event) {
     }
     else {
         gameOver();
-        createScore(secondsLeft * 5);
+        createScore(secondsLeft * 2);
         secondsLeft = 0;
     }
-
 }
 
+// // Tallys highscore
+function createScore(points) {
+    score += points;
+}
+
+// Subtracts 5 seconds from timer
+function wrongAnswer() {
+    secondsLeft -= 5;
+}
+
+// Displays the current question
 showQuestion(questionIndex);
 
-// displays next question
+// Displays next question
 function showQuestion(index) {
     questionEl.textContent = questions[index].quest;
     choice1El.textContent = questions[index].choices[0];
@@ -135,26 +192,7 @@ function showQuestion(index) {
     choice4El.textContent = questions[index].choices[3];
 }
 
-function wrongAnswer() {
-    secondsLeft -= 5;
-}
-
-let score = 0;
-
-// // function for creating highscore
-function createScore(points) {
-    score += points;
-    console.log(score);
-}
-
-// TIMER
-// sets time for timer
-var secondsLeft = 60;
-
-// Selects element by class
-var timeEl = document.querySelector(".timer");
-
-// timer function
+// Begins and displays timer, and stops timer and end game (gameOver) at 0.
 function timerDisplay() {
     // Sets interval in variable
     var timerInterval = setInterval(function () {
@@ -169,22 +207,16 @@ function timerDisplay() {
     }, 1000);
 }
 
-
-let printScoreBoxEl = document.getElementById("printScoreBox");
-
+// Hides last question, displays entering initials, and displays score.
 function gameOver() {
+    var printScoreEl = document.getElementById("printScore");
     questionAnswerBoxEl.setAttribute("class", "hidden");
     printScoreBoxEl.setAttribute("class", "visible");
-    var printScoreEl = document.getElementById("printScore");
     timeEl.textContent = "Time Left: 0";
     printScoreEl.textContent = ("Your Score: " + score);
 }
 
-
-// Entering in initials
-let initialsEl = document.querySelector("#initials");
-
-
+// Validates input is !null, calls on inputScore for to put score and initials in local storage.
 function validateForm(event) {
     event.preventDefault();
     let initials = document.forms["initialsInput"]["initials"].value;
@@ -195,10 +227,8 @@ function validateForm(event) {
     inputScore(initials, score);
 }
 
-
-let highScoreBoard = JSON.parse(localStorage.getItem("highScoreBoard")) || [];
-
-// // function for displaying highscore
+// Stores score and initials in local storage. sorts scores in local storage with high score first, 
+// and calls on display highscore (renderScoreboard).
 function inputScore(initials, score) {
     var userScore = {
         initials: initials,
@@ -210,36 +240,22 @@ function inputScore(initials, score) {
     renderScoreboard();
 }
 
-
-
-
-let listHighScoreEl = document.getElementById("listHighScore");
-let highScoreBoxEl = document.getElementById("highScoreBox");
-
+// Displays score board and hides initials entry page, limits display to 6 scores
 function renderScoreboard() {
     printScoreBoxEl.setAttribute("class", "hidden");
+    introRulesBoxEl.setAttribute("class", "hidden");
     highScoreBoxEl.setAttribute("class", "visible");
-
     while (listHighScoreEl.lastChild) {
         listHighScoreEl.removeChild(listHighScoreEl.lastChild);
     }
     for (let i = 0; i < 6 && highScoreBoard.length; i++) {
-
         var li = document.createElement("li");
-        li.textContent = (`${highScoreBoard[i].totalScore} **** ${highScoreBoard[i].initials}`)
+        li.textContent = (highScoreBoard[i].totalScore + " **** " + highScoreBoard[i].initials)
         listHighScoreEl.appendChild(li);
     }
 }
 
-
-// targets button on high score page, to start game again
-let playBtnEl = document.getElementById("playBtn");
-playBtnEl.addEventListener("click", playAgain);
-
-
-let introRulesBoxEl = document.getElementById("introRulesBox");
-
-
+// Allows user to play again, sets variables back to beginning.
 function playAgain() {
     highScoreBoxEl.setAttribute("class", "hidden");
     introRulesBoxEl.setAttribute("class", "visible");
@@ -247,22 +263,4 @@ function playAgain() {
     questionIndex = 0;
     secondsLeft = 60;
     score = 0;
-}
-
-
-let viewHighScoreEl = document.getElementById("viewHighScore");
-viewHighScoreEl.addEventListener("click", viewHighScores);
-
-function viewHighScores() {
-    introRulesBoxEl.setAttribute("class", "hidden");
-    highScoreBoxEl.setAttribute("class", "visible");
-    while (listHighScoreEl.lastChild) {
-        listHighScoreEl.removeChild(listHighScoreEl.lastChild);
-    }
-    for (let i = 0; i < 6 && highScoreBoard.length; i++) {
-
-        var li = document.createElement("li");
-        li.textContent = (`${highScoreBoard[i].totalScore} **** ${highScoreBoard[i].initials}`)
-        listHighScoreEl.appendChild(li);
-    }
 }

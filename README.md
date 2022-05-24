@@ -11,15 +11,14 @@
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 Timed QUiz on JS Fundamentals is a timed coding quiz with multiple-choice questions. 
+
+ If a question is answered wrong, 5 seconds is deducted from the timer. If the question is answered correctly, will add 100 points to the score. For each second left on the clock, the user receives 2 extra points. When game is over, the user enters their initials to the high scorer board.
 
 ### The challenge
 Timed QUiz on JS Fundamentals app runs in the browser, and features dynamically updated HTML and CSS powered by JavaScript. It should have a clean, polished, and responsive user interface.
@@ -48,13 +47,6 @@ THEN I can save my initials and score
 
 ![](./screenshot.jpg)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
@@ -63,49 +55,42 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ## My process
 
+This was quite the challenge for a newbie to javascript and coding in general! It seemed like a very complicated challenge, so this is how I approached the problem:
+
+I set up the HTML bones, and added a little bit of CSS so that I would remember to add classes and ids to my HTML. I decided to put all of the page change elements in as HTML, as I was just learning on how to change content dynamically, and this seemed a quick solution, rather than adding HTML via javascript.
+
+For the javascript, I broke down each individual task into its own function. This helped me better understand the order of operations within the script, when functions called upon other functions. When I finally got everything working throughout all the paths, I refactored the code and added comments. Luckily, I didn't find too much duplicate code, so I think I'm getting better at this -- ha!
+
+Finally, I went back in and added some more CSS so that it would look nicer. I only learned about Bootstrp after I started on my code, so sadly I could not include it this time around. I plan on revisiting this project so that it looks more professional.
+
 ### Built with
 
 - Semantic HTML5 markup
 - CSS
 - Javascript
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
-
 ### What I learned
 
-When you add the global variable to CSS to display block, the title withing the header will display on the page!
+Throughout this project, I seemed to be continually vexxed by the concept of how arguments work in funtions. That the type of data tht you put into the function in one part of the script, needs to be the same kind, however can have a differnt name. However whatever argument that you want to use, basically becomes a variable in that local function. 
 
+Here's a code snippets that displays the concept that I was having trouble with:
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+```js
+showQuestion(questionIndex);
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
+function showQuestion(index) {
+    questionEl.textContent = questions[index].quest;
+    choice1El.textContent = questions[index].choices[0];
+    choice2El.textContent = questions[index].choices[1];
+    choice3El.textContent = questions[index].choices[2];
+    choice4El.textContent = questions[index].choices[3];
 }
 ```
 
-If you want more help with writing markdown, check out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
-
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+JS functions and arguments are becoming more clear to me, however I need to continue to practice to solidify my knowlwedge, and learn more about the different ways arguments can be used in a function.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 - GitHub - [NiferK](https://github.com/NiferK)
@@ -113,10 +98,4 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Acknowledgments
 
-Nolan Spence and I collaboratd on creating the questions for the quiz. 
-Shout out to [nullaus](https://github.com/nullaus) who was my quick dial on all the random questions about JS, and talked through with me about my data structure.
-
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+Nolan Spence and I collaboratd on creating the questions for the quiz, and for helping talk through logic. Thanks to my studybuddies Angie, Ivy, and Asha, for the support and great collaborative spirit.Huge shout out to [nullaus](https://github.com/nullaus) who was my quick dial on all the questions about JS, and talked through with me about my logic.
