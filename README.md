@@ -45,7 +45,8 @@ THEN I can save my initials and score
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./assets/Images/ScreenShot-rules.png)
+![](./assets/Images/ScreenShot-quiz.png)
 
 
 ### Links

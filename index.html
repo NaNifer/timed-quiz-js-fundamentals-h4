@@ -12,6 +12,7 @@
 
 <body>
     <header>
+        <!-- Click takes you to high score board -->
         <button class="viewHighScore" id="viewHighScore" onclick=""> View High Scores </button>
         <div class="timer">Time Left: 60</div>
     </header>
@@ -36,7 +37,7 @@
                 <button class="beginBtn" id="beginBtn" onclick=""> I'm ready! </button>
             </container>
 
-            <!-- Onclick, these elements will not be unhidden. -->
+            <!-- Onclick of beginBtn, these elements will be visible. -->
             <container id="questionAnswerBox" class="questionAnswerBox hidden">
                 <h2 class="question" id="question">Question goes here. Plus there's some added text for parameters in
                     how it would be used in Javascript. </h2>
@@ -49,15 +50,17 @@
                         It's a really, really long and complicated one.</button>
                 </container>
 
+                <!-- Pop-up showing results of choice. -->
                 <div class="pop-up">
                     <div id="results"></div>
                 </div>
             </container>
 
+            <!-- After game ends, these elements will be visible. -->
             <container id="printScoreBox" class="printScoreBox hidden">
                 <h2 class="printScore" id="printScore"></h2>
                 <h4>Good job! Please enter your initials to save your score on the high score board.</h4>
-                
+
                 <form name="initialsInput" onsubmit="return validateForm(event)" method="post">
                     Initials: <input type="text" name="initials" id="initials">
                     <button type="submit" value="save">Save</button>
@@ -65,18 +68,18 @@
 
             </container>
 
+            <!-- Onclick of Save button, these elements will be visible. -->
             <container id="highScoreBox" class="highScoreBox hidden">
                 <h2 class="highScores" id="highScores">Score Board</h2>
                 <ol class="listHighScore" id="listHighScore">
+                    <li></li>
 
                 </ol>
+
+                <!-- Onclick of playBtn, page will go back to beginning. -->
                 <button class="playBtn" id="playBtn" onclick=""> Play Again!</button>
             </container>
-
         </container>
-
-
-
     </main>
     <script src="./assets/js/script.js"></script>
 </body>

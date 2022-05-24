@@ -17,6 +17,7 @@ let playBtnEl = document.getElementById("playBtn");
 let introRulesBoxEl = document.getElementById("introRulesBox");
 let viewHighScoreEl = document.getElementById("viewHighScore");
 let timeEl = document.querySelector(".timer");
+let resultsEl = document.getElementById('results');
 // Entering in initials
 let initialsEl = document.querySelector("#initials");
 
@@ -114,7 +115,7 @@ const questions = [
         ]
     },
     {
-        quest: "What will be the output of the following code:   let bear = ”FuzzyLittleBear” console.log(bear.charAt(4))",
+        quest: "What will be the output of the following code:   let bear = 'FuzzyLittleBear' console.log(bear.charAt(4))",
         answer: "y",
         choices: [
             "z",
@@ -147,8 +148,6 @@ function startQuiz() {
 //  subtracts from timer(wrongAnswer), and adds 1 to questionIndex and displays (showQuestion), or 
 // ends game (gameOver), gives points for extra secs & create score (createScore).
 function choiceClickHandler(event) {
-    console.log(event);
-    const resultsEl = document.getElementById('results');
     // when one of the choices are selected, then it is verfied with the correct answer, 
     if (event.target.innerText === questions[questionIndex].answer) {
         resultsEl.innerText = "Correct! +100points";
@@ -261,6 +260,8 @@ function playAgain() {
     introRulesBoxEl.setAttribute("class", "visible");
     initialsEl.value = "";
     questionIndex = 0;
+    choicesIndex = 0;
     secondsLeft = 60;
     score = 0;
+    resultsEl.innerText = "";
 }
